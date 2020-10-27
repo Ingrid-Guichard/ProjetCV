@@ -1,4 +1,4 @@
-package com.CGO.myawesomeCV
+package io.takima.demo;
 
 import javax.persistence.*
 
@@ -12,7 +12,7 @@ data class Link(
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id")
-        var user_id: User?) {
+        var userId: User?) {
 
     constructor() : this(null, null, null, false, null)
 }

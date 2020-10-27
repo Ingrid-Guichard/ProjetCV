@@ -1,4 +1,4 @@
-package com.CGO.myawesomeCV
+package io.takima.demo;
 
 import java.util.*
 import javax.persistence.*
@@ -15,7 +15,18 @@ data class User(
         @Column(name = "mail") var mail: String?,
         @Column(name= "photo") var photo: String?,
 
-        @OneToMany(mappedBy = "languages", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
-        var languages:List<Language>?) {
-    constructor() : this(null, null, null, null, null, null, null, null, null)
+        @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
+        var languages:List<Language>?,
+
+        @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
+        var educations:List<Education>?,
+        @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
+        var experiences:List<Experience>?,
+        @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
+        var links:List<Link>?,
+        @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
+        var projects:List<Project>?,
+        @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
+        var skills:List<Skill>?) {
+    constructor() : this(null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }
