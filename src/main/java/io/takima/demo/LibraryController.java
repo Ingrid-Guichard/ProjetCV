@@ -31,7 +31,7 @@ public class LibraryController {
     }
 
     @GetMapping("/edit/{id}")
-    public String addUserPage(@PathVariable(value = "id") Long id, Model m) {
+    public String displayUserPage(@PathVariable(value = "id") Long id, Model m) {
         Optional<User> user = this.userDAO.findById(id);
         if(user.isPresent()) {
             m.addAttribute("user", user.get());
@@ -48,10 +48,9 @@ public class LibraryController {
     }
 
     @PostMapping("/edit/{id}")
-    public RedirectView createNewUser(@ModelAttribute User user, RedirectAttributes attrs) {
-        attrs.addFlashAttribute("message", "Vos modifications ont bien été ajoutées.");
+    public RedirectView editUser(@ModelAttribute User user) {
         userDAO.save(user);
-        return new RedirectView("/edit/{id}");
+        return new RedirectView("/edit/" + user.getId());
     }
 
 }

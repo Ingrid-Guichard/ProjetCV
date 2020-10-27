@@ -1316,7 +1316,6 @@
     <column id="393" parent="337" name="photo">
       <Position>8</Position>
       <DataType>varchar(100)|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <key id="394" parent="337" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
