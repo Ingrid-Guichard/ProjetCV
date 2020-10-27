@@ -13,7 +13,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-5">
-            <form method="post" th:action="@{/edit}" th:object="${user}">
+            <form method="post" th:action="@{'/edit/'+${user.id}}" th:object="${user}">
                 <div class="form-group">
                     <label for="firstNameInput">Prénom</label>
                     <input type="text" th:field="*{firstName}" class="form-control" id="firstNameInput" th:value="${user.firstName}" required>
@@ -48,7 +48,7 @@
                             <span class="input-group-text" id="inputGroupFileAddon01">Photo de profil</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="picture" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01" required>
+                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="picture" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                             <label class="custom-file-label" for="inputGroupFile01">Choisir fichier</label>
                         </div>
                     </div>
@@ -66,6 +66,7 @@
                         <img th:if="${(user.photo == null || #strings.isEmpty(user.photo))}"
                              th:src="@{${'/img/default_user.jpg'}}" class="rounded-circle" width="130" height="130"
                              alt="user">
+
                     </div>
 
                     <br>

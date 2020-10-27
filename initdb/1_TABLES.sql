@@ -9,7 +9,7 @@ create table users
     address VARCHAR(255) not null,
     job_status VARCHAR(100) not null,
     mail VARCHAR(255) not null,
-    photo VARCHAR(100) not null
+    photo VARCHAR(100) null
 );
 
 create table languages
