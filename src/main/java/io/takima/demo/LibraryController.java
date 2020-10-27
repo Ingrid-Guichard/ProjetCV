@@ -35,11 +35,11 @@ public class LibraryController {
         Optional<User> user = this.userDAO.findById(id);
         if(user.isPresent()) {
             m.addAttribute("user", user.get());
-            m.addAttribute("languages", this.languageDAO.findLanguagesByUserId(id));
-            m.addAttribute("skills", this.skillDAO.findSkillsByUserId(id));
-            m.addAttribute("educations",this.educationDAO.findEducationsByUserId(id));
-            m.addAttribute("projects",this.projectDAO.findProjectsByUserId(id));
-            m.addAttribute("experiences",this.experienceDAO.findExperiencesByUserId(id));
+            m.addAttribute("languages", user.get().getLanguages());
+            m.addAttribute("skills", user.get().getSkills());
+            m.addAttribute("educations", user.get().getEducations());
+            m.addAttribute("projects", user.get().getProjects());
+            m.addAttribute("experiences", user.get().getExperiences());
             return "affichageDroite";
         } else
         {

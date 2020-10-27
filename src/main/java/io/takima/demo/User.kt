@@ -3,7 +3,7 @@ package io.takima.demo;
 import java.util.*
 import javax.persistence.*
 
-@Entity(name = "user")
+@Entity(name = "users")
 data class User(
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Id var id: Long?,
