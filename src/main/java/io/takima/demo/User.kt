@@ -13,20 +13,20 @@ data class User(
         @Column(name = "address") var address: String?,
         @Column(name = "job_status") var jobStatus: String?,
         @Column(name = "mail") var mail: String?,
-        @Column(name= "photo") var photo: String?,
+        @Column(name = "photo") var photo: String?,
 
         @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
-        var languages:List<Language>?,
+        var languages: List<Language>?,
 
         @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
-        var educations:List<Education>?,
+        var educations: List<Education>?,
         @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
-        var experiences:List<Experience>?,
+        var experiences: List<Experience>?,
         @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
-        var links:List<Link>?,
+        var links: List<Link>?,
         @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
-        var projects:List<Project>?,
+        var projects: List<Project>?,
         @OneToMany(mappedBy = "userId", cascade = arrayOf(CascadeType.ALL), fetch = FetchType.LAZY)
-        var skills:List<Skill>?) {
+        var skills: List<Skill>?) {
     constructor() : this(null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }

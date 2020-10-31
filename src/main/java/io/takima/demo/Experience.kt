@@ -18,6 +18,6 @@ data class Experience(
         @JsonIgnore
         @JoinColumn(name = "user_id")
         var userId: User?) {
-    
+
     constructor() : this(null, null, null, null, null, null, null)
 }

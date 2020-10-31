@@ -3,12 +3,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Modifier mon CV</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 </head>
 
 <body style="background-color: #FFFFFF;">
@@ -17,25 +24,32 @@
         <div class="col-6">
             <ul class="nav nav-tabs navbar-fixed-top" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="user-tab" data-toggle="tab" href="/user" role="tab" aria-controls="user" aria-selected="true">Profil</a>
+                    <a class="nav-link" id="user-tab" data-toggle="tab" href="/user" role="tab" aria-controls="user"
+                       aria-selected="true">Profil</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="link-tab" data-toggle="tab" href="/link" role="tab" aria-controls="link" aria-selected="false">Social</a>
+                    <a class="nav-link" id="link-tab" data-toggle="tab" href="/link" role="tab" aria-controls="link"
+                       aria-selected="false">Social</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="language-tab" data-toggle="tab" href="/language" role="tab" aria-controls="language" aria-selected="false">Langues</a>
+                    <a class="nav-link" id="language-tab" data-toggle="tab" href="/language" role="tab"
+                       aria-controls="language" aria-selected="false">Langues</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="skill-tab" data-toggle="tab" href="/skill" role="tab" aria-controls="skill" aria-selected="false">Skills</a>
+                    <a class="nav-link" id="skill-tab" data-toggle="tab" href="/skill" role="tab" aria-controls="skill"
+                       aria-selected="false">Skills</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="education-tab" data-toggle="tab" href="/education" role="tab" aria-controls="education" aria-selected="false">Formation</a>
+                    <a class="nav-link" id="education-tab" data-toggle="tab" href="/education" role="tab"
+                       aria-controls="education" aria-selected="false">Formation</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="project-tab" data-toggle="tab" href="/project" role="tab" aria-controls="project" aria-selected="false">Projets</a>
+                    <a class="nav-link active" id="project-tab" data-toggle="tab" href="/project" role="tab"
+                       aria-controls="project" aria-selected="false">Projets</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="experience-tab" data-toggle="tab" href="/experience" role="tab" aria-controls="experience" aria-selected="false">Expériences</a>
+                    <a class="nav-link" id="experience-tab" data-toggle="tab" href="/experience" role="tab"
+                       aria-controls="experience" aria-selected="false">Expériences</a>
                 </li>
             </ul>
 
@@ -45,18 +59,21 @@
                         <form method="put" th:action="@{'/edit/project/'+${user.id}}" th:object="${projects}">
                             <div class="form-group">
                                 <label for="titleInput">Titre du projet</label>
-                                <input type="text" th:field="*{project?.title}" class="form-control" id="titleInput" th:value="${project?.title}" required>
+                                <input type="text" th:field="*{project?.title}" class="form-control" id="titleInput"
+                                       th:value="${project?.title}" required>
                             </div>
                             <div class="form-group">
                                 <label for="summaryInput">Description</label>
-                                <input type="text" th:field="*{project?.summary}" class="form-control" id="summaryInput" th:value="${project?.summary}" required>
+                                <input type="text" th:field="*{project?.summary}" class="form-control" id="summaryInput"
+                                       th:value="${project?.summary}" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Valider les modifications</button>
                         </form>
                     </div>
 
                     <p>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseProject" aria-expanded="false" aria-controls="#collapseProject">
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                data-target="#collapseProject" aria-expanded="false" aria-controls="#collapseProject">
                             Ajouter un projet
                         </button>
                     </p>
@@ -65,11 +82,13 @@
                             <form method="post" th:action="@{'/edit/project/'+${user.id}}" th:object="${proj}">
                                 <div class="form-group">
                                     <label for="newTitleInput">Titre du projet</label>
-                                    <input type="text" th:field="*{title}" class="form-control" id="newTitleInput" required>
+                                    <input type="text" th:field="*{title}" class="form-control" id="newTitleInput"
+                                           required>
                                 </div>
                                 <div class="form-group">
                                     <label for="newSummaryInput">Description</label>
-                                    <input type="text" th:field="*{summary}" class="form-control" id="newSummaryInput" required>
+                                    <input type="text" th:field="*{summary}" class="form-control" id="newSummaryInput"
+                                           required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Ajouter</button>
                             </form>
@@ -93,7 +112,8 @@
                     <br>
 
                     <div class="row">
-                        <h2 class="font-weight-light" th:text="${user.firstName}+' '+${user.lastName.toUpperCase()}" style="color:#489fc2"></h2>
+                        <h2 class="font-weight-light" th:text="${user.firstName}+' '+${user.lastName.toUpperCase()}"
+                            style="color:#489fc2"></h2>
                     </div>
 
                     <div class="row">
@@ -156,7 +176,8 @@
 
                 <div class="col-7" style="padding-left: 3em">
                     <div class="row">
-                        <h3 class="font-weight-light text-center" th:text="${user.jobStatus}" style="color:#489fc2">Job status</h3>
+                        <h3 class="font-weight-light text-center" th:text="${user.jobStatus}" style="color:#489fc2">Job
+                            status</h3>
                     </div>
 
                     <br><br>
@@ -167,7 +188,9 @@
                         <table class="font-weight-light" style="width:100%">
                             <tbody>
                             <tr th:each="education : ${educations}">
-                                <td style="width: 30%" scope="row" th:text=" ${education?.startingDate} - ${education?.finalDate}">debut - fin</td>
+                                <td style="width: 30%" scope="row"
+                                    th:text=" ${education?.startingDate} - ${education?.finalDate}">debut - fin
+                                </td>
                                 <td th:text="${education?.title}">Ecole</td>
                                 <td scope="row"></td>
                                 <td th:text="${education?.place}">Lieu</td>
@@ -196,7 +219,9 @@
                         <table class="font-weight-light" style="width:100%">
                             <tbody>
                             <tr th:each="experience : ${experiences}">
-                                <td style="width: 30%" scope="row" th:text=" ${experience?.startingDate} - ${experience?.finalDate}">debut - fin</td>
+                                <td style="width: 30%" scope="row"
+                                    th:text=" ${experience?.startingDate} - ${experience?.finalDate}">debut - fin
+                                </td>
                                 <td th:text="${experience?.place}"><b>Entreprise</b></td>
                                 <td scope="row"></td>
                                 <td th:text="${experience?.title}">Poste</td>

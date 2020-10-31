@@ -3,11 +3,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Modifier mon CV</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="../static/js/bootstrap.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png"/>
 
 </head>
 <body style="background-color: #FFFFFF;">
@@ -17,31 +18,37 @@
             <form method="post" th:action="@{'/edit/'+${user.id}}" th:object="${user}">
                 <div class="form-group">
                     <label for="firstNameInput">Prénom</label>
-                    <input type="text" th:field="*{firstName}" class="form-control" id="firstNameInput" th:value="${user.firstName}" required>
+                    <input type="text" th:field="*{firstName}" class="form-control" id="firstNameInput"
+                           th:value="${user.firstName}" required>
                 </div>
                 <div class="form-group">
                     <label for="lastNameInput">Nom de famille</label>
-                    <input type="text" th:field="*{lastName}" class="form-control" id="lastNameInput" th:value="${user.lastName}" required>
+                    <input type="text" th:field="*{lastName}" class="form-control" id="lastNameInput"
+                           th:value="${user.lastName}" required>
                 </div>
                 <div class="form-group">
                     <label for="ageInput">Age</label>
-                    <input type="number" th:field="*{age}" class="form-control" id="ageInput" th:value="${user.age}" required>
+                    <input type="number" th:field="*{age}" class="form-control" id="ageInput" th:value="${user.age}"
+                           required>
                 </div>
                 <div class="form-group">
                     <label for="addressInput">Adresse</label>
-                    <input type="text" th:field="*{address}" class="form-control" id="addressInput" th:value="${user.address}" required>
+                    <input type="text" th:field="*{address}" class="form-control" id="addressInput"
+                           th:value="${user.address}" required>
                 </div>
                 <div class="form-group">
                     <label for="jobStatusInput">Poste actuel ou recherché</label>
-                    <input type="text" th:field="*{jobStatus}" class="form-control" id="jobStatusInput" th:value="${user.jobStatus}" required>
+                    <input type="text" th:field="*{jobStatus}" class="form-control" id="jobStatusInput"
+                           th:value="${user.jobStatus}" required>
                 </div>
                 <div class="form-group">
                     <label for="mailInput">Email</label>
-                    <input type="email" th:field="*{mail}" class="form-control" id="mailInput" th:value="${user.mail}" required>
+                    <input type="email" th:field="*{mail}" class="form-control" id="mailInput" th:value="${user.mail}"
+                           required>
                 </div>
                 <div class="form-group">
                     <div class="profile-picture-container">
-                        <img id="previewProfilePic" src="/img/image_unavailable.png" alt="image unavailable" />
+                        <img id="previewProfilePic" src="/img/image_unavailable.png" alt="image unavailable"/>
                     </div>
 
                     <div class="input-group mb-3 upload-image">
@@ -49,7 +56,8 @@
                             <span class="input-group-text" id="inputGroupFileAddon01">Photo de profil</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="picture" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="picture"
+                                   onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                             <label class="custom-file-label" for="inputGroupFile01">Choisir fichier</label>
                         </div>
                     </div>
@@ -74,7 +82,8 @@
 
                     <!--enregistrer le nom directement en majuscules -->
                     <div class="row">
-                        <h2 class="font-weight-light" th:text="${user.firstName}+' '+${user.lastName.toUpperCase()}" style="color:#489fc2">Prénom NOM</h2>
+                        <h2 class="font-weight-light" th:text="${user.firstName}+' '+${user.lastName.toUpperCase()}"
+                            style="color:#489fc2">Prénom NOM</h2>
                     </div>
 
                     <div class="row">
@@ -137,7 +146,8 @@
 
                 <div class="col-7" style="padding-left: 3em">
                     <div class="row">
-                        <h3 class="font-weight-light text-center" th:text="${user.jobStatus}" style="color:#489fc2">Job status</h3>
+                        <h3 class="font-weight-light text-center" th:text="${user.jobStatus}" style="color:#489fc2">Job
+                            status</h3>
                     </div>
 
                     <br><br>
@@ -148,7 +158,9 @@
                         <table class="font-weight-light" style="width:100%">
                             <tbody>
                             <tr th:each="education : ${educations}">
-                                <td style="width: 30%" scope="row" th:text=" ${education.startingDate} - ${education.finalDate}">debut - fin</td>
+                                <td style="width: 30%" scope="row"
+                                    th:text=" ${education.startingDate} - ${education.finalDate}">debut - fin
+                                </td>
                                 <td th:text="${education.title}">Ecole</td>
                                 <td scope="row"></td>
                                 <td th:text="${education.place}">Lieu</td>
@@ -177,7 +189,9 @@
                         <table class="font-weight-light" style="width:100%">
                             <tbody>
                             <tr th:each="experience : ${experiences}">
-                                <td style="width: 30%" scope="row" th:text=" ${experience.startingDate} - ${experience.finalDate}">debut - fin</td>
+                                <td style="width: 30%" scope="row"
+                                    th:text=" ${experience.startingDate} - ${experience.finalDate}">debut - fin
+                                </td>
                                 <td th:text="${experience.place}"><b>Entreprise</b></td>
                                 <td scope="row"></td>
                                 <td th:text="${experience.title}">Poste</td>
