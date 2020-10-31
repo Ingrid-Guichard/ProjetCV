@@ -1,5 +1,6 @@
 package io.takima.demo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 @Entity(name = "links")
@@ -11,6 +12,7 @@ data class Link(
         @Column(name = "is_checked") var isChecked: Boolean?,
 
         @ManyToOne(fetch = FetchType.LAZY)
+        @JsonIgnore
         @JoinColumn(name = "user_id")
         var userId: User?) {
 

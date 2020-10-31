@@ -1,5 +1,6 @@
 package io.takima.demo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.*
 
@@ -14,6 +15,7 @@ data class Experience(
         @Column(name = "summary") var summary: String?,
 
         @ManyToOne(fetch = FetchType.LAZY)
+        @JsonIgnore
         @JoinColumn(name = "user_id")
         var userId: User?) {
     
