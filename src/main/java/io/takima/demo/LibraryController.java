@@ -40,7 +40,7 @@ public class LibraryController {
             m.addAttribute("educations", user.get().getEducations());
             m.addAttribute("projects", user.get().getProjects());
             m.addAttribute("experiences", user.get().getExperiences());
-            return "affichageDroite";
+            return "user";
         } else
         {
             return "";
