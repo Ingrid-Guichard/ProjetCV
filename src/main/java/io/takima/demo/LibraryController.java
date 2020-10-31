@@ -30,6 +30,23 @@ public class LibraryController {
         this.skillDAO = skillDAO;
     }
 
+    @GetMapping("/index/{id}")
+    public String homePage(@PathVariable(value = "id") Long id, Model m) {
+        Optional<User> user = this.userDAO.findById(id);
+        if(user.isPresent()) {
+            m.addAttribute("user", user.get());
+            m.addAttribute("languages", user.get().getLanguages());
+            m.addAttribute("skills", user.get().getSkills());
+            m.addAttribute("educations", user.get().getEducations());
+            m.addAttribute("projects", user.get().getProjects());
+            m.addAttribute("experiences", user.get().getExperiences());
+            return "index";
+        } else
+        {
+            return "";
+        }
+    }
+
     @GetMapping("/edit/{id}")
     public String displayUserPage(@PathVariable(value = "id") Long id, Model m) {
         Optional<User> user = this.userDAO.findById(id);
@@ -52,5 +69,7 @@ public class LibraryController {
         userDAO.save(user);
         return new RedirectView("/edit/" + user.getId());
     }
+
+
 
 }
