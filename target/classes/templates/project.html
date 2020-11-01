@@ -26,9 +26,9 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{'/edit/'+${user.id}}">Profil</a>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link" th:href="@{'/edit/link/'+${user.id}}">Social</a>
-                </li>
+                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{'/edit/language/'+${user.id}}">Langues</a>
                 </li>
@@ -227,6 +227,13 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="justify-content-center row">
+        <div class="col-5"></div>
+        <div class="col-2">
+            <a class="btn btn-outline-dark" th:href="@{'/index/'+${user.id}}">Retour à l'accueil</a>
+        </div>
+        <div class="col-5"></div>
     </div>
 </div>
 </body>
