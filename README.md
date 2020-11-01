@@ -1,6 +1,6 @@
 # projetCV
 
-1. Importer le projet dans IntelliJ IDEA en important le fichier "pom.xml" à la racine de ce répertoire
+1. Importer le projet dans IntelliJ IDEA en important le fichier "pom.xml" à la racine de ce répertoire en tant que Maven project.
 
 2. Exécuter votre DB mysql. Si vous avez docker, vous pouvez utiliser la commande suivante:
 ```
@@ -11,4 +11,4 @@ docker run --name mariadb --rm -e MYSQL_ROOT_PASSWORD=toor -e MYSQL_DATABASE=def
 
 4. Tous les scripts sql contenus dans le dossier initdb seront exécutés automatiquement lors du premier chargement de la DB.
 
-5. Lancez l'application via IntelliJ, et vérifiez qu'elle fonctionne sur http://localhost:8080 (par défaut)
+5. Lancez l'application via IntelliJ, et vérifiez qu'elle fonctionne sur http://localhost:8080/index/1

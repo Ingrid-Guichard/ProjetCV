@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../static/js/public_style.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/public_style.css">
     <link rel="icon" type="image/x-icon" href="../static/img/favicon.png"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -741,12 +741,12 @@
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none" th:text="${user.firstName}+' '+${user.lastName}"></span>
             <span class="d-none d-lg-block">
-                        <img class="img-fluid img-profile rounded-circle mx-auto mb-2"
-                             th:if="${(user.photo != null && !#strings.isEmpty(user.photo))}"
-                             th:src="@{${'/images/' + user.photo}}" alt="user photo">
-                        <img class="img-fluid img-profile rounded-circle mx-auto mb-2"
-                             th:if="${(user.photo == null || #strings.isEmpty(user.photo))}"
-                             th:src="@{${'/img/default_user.jpg'}}" alt="user">
+                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2"
+                         th:if="${(user.photo != null)}"
+                         th:src="@{${'/images/' + user.photo}}" alt="user photo">
+                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2"
+                         th:if="${(user.photo == null || #strings.isEmpty(user.photo))}"
+                         th:src="@{${'/img/default_user.jpg'}}" alt="user">
             </span>
         </a>
     </div>
@@ -765,7 +765,7 @@
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
             </br>
             </br>
-            <button class="btn btn-outline-dark"><a href="/edit" class="btn btn-primary">Editer</a></button>
+            <a class="btn btn-outline-dark" th:href="@{'/edit/'+${user.id}}">Editer</a>
         </ul>
     </div>
 </nav>
@@ -778,7 +778,7 @@
             <div class="subheading mb-5" th:text="${user.age} + ' ans'"></div>
             <div class="subheading mb-5" th:text="'Adresse : ' + ${user.address}"></div>
             <div class="subheading mb-5" th:text="'Email : ' + ${user.mail}"></div>
-            <p class="lead mb-5" th:text="${user.jobStatus}">description</p>
+            <p class="lead mb-5" th:text="${user.jobStatus}"></p>
             <div class="social-icons">
                 <a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a class="social-icon" href="#"><i class="fab fa-github"></i></a>
@@ -798,14 +798,14 @@
                         <tbody>
                         <tr th:each="experience : ${experiences}">
                             <td style="width: 30%" scope="row"
-                                th:text=" ${experience?.startingDate} - ${experience?.finalDate}">debut - fin
+                                th:text=" ${experience?.startingDate}+' - '+${experience?.finalDate}">
                             </td>
-                            <td class="font-weight-light" style="color:#489fc2" th:text="${experience?.place}"><b>Entreprise</b>
-                            </td>
+                            <th class="font-weight-light" style="color:#489fc2" th:text="${experience?.place}">
+                            </th>
                             <td scope="row"></td>
-                            <td th:text="${experience?.title}">Poste</td>
+                            <td th:text="${experience?.title}"></td>
                             <td scope="row"></td>
-                            <td th:text="${experience?.summary}">Description mission</td>
+                            <td th:text="${experience?.summary}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -825,15 +825,14 @@
                             <tbody>
                             <tr th:each="education : ${educations}">
                                 <td style="width:30%" scope="row"
-                                    th:text=" ${education?.startingDate} - ${education?.finalDate}">debut - fin
+                                    th:text=" ${education?.startingDate}+' - '+${education?.finalDate}">
                                 </td>
-                                <td class="font-weight-light" style="color:#489fc2" th:text="${education?.title}">
-                                    Ecole
-                                </td>
+                                <th class="font-weight-light" style="color:#489fc2" th:text="${education?.title}">
+                                </th>
                                 <td scope="row"></td>
-                                <td th:text="${education?.place}">Lieu</td>
+                                <td th:text="${education?.place}"></td>
                                 <td scope="row"></td>
-                                <td th:text="${education?.summary}"><b>Diplôme</b></td>
+                                <td th:text="${education?.summary}"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -847,13 +846,9 @@
     <section class="resume-section" id="skills">
         <div class="resume-section-content">
             <h2 class="mb-5">Compétences</h2>
-            <table>
-                <tbody>
-                <tr th:each="skill : ${skills}">
-                    <td scope="row" th:text="${skill?.name}"><b>Compétence: </b></td>
-                </tr>
-                </tbody>
-            </table>
+            <ul class="font-weight-light" style="width:100%" th:each="skill : ${skills}">
+                <li th:text="${skill?.name}"></li>
+            </ul>
         </div>
     </section>
     <hr class="m-0"/>
@@ -864,9 +859,9 @@
             <table>
                 <tbody>
                 <tr th:each="language : ${languages}">
-                    <td class="font-weight-light" style="color:#489fc2" scope="row" th:text="${language?.name}"><b>Langue: </b>
-                    </td>
-                    <td th:text="${language?.level}">niveau</td>
+                    <th class="font-weight-light" style="color:#489fc2" scope="row" th:text="${language?.name} + ': '">
+                    </th>
+                    <td th:text="${language?.level}"></td>
                 </tr>
                 </tbody>
 

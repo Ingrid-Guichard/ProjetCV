@@ -17,22 +17,10 @@ import java.util.NoSuchElementException;
 public class LibraryController {
 
     private final UserDAO userDAO;
-    private final EducationDAO educationDAO;
-    private final ExperienceDAO experienceDAO;
-    private final LanguageDAO languageDAO;
-    private final LinkDAO linkDAO;
-    private final ProjectDAO projectDAO;
-    private final SkillDAO skillDAO;
     private final StorageService storageService;
 
-    public LibraryController(UserDAO userDAO, EducationDAO educationDAO, ExperienceDAO experienceDAO, LanguageDAO languageDAO, LinkDAO linkDAO, ProjectDAO projectDAO, SkillDAO skillDAO, StorageService storageService) {
+    public LibraryController(UserDAO userDAO, StorageService storageService) {
         this.userDAO = userDAO;
-        this.educationDAO = educationDAO;
-        this.experienceDAO = experienceDAO;
-        this.languageDAO = languageDAO;
-        this.linkDAO = linkDAO;
-        this.projectDAO = projectDAO;
-        this.skillDAO = skillDAO;
         this.storageService = storageService;
     }
 
@@ -123,9 +111,7 @@ public class LibraryController {
     @PostMapping("/edit/experience/{id}")
     public RedirectView newExperience(@PathVariable(value = "id") Long id, @ModelAttribute Experience exp) {
         User user = this.userDAO.findById(id).orElseThrow(() -> new NoSuchElementException());
-        exp.setUserId(user);
         user.getExperiences().add(exp);
-        userDAO.save(user);
         return new RedirectView("/edit/experience/" + user.getId());
     }
 
@@ -152,9 +138,7 @@ public class LibraryController {
     @PostMapping("/edit/language/{id}")
     public RedirectView newLanguage(@PathVariable(value = "id") Long id, @ModelAttribute Language lang) {
         User user = this.userDAO.findById(id).orElseThrow(() -> new NoSuchElementException());
-        lang.setUserId(user);
         user.getLanguages().add(lang);
-        userDAO.save(user);
         return new RedirectView("/edit/language/" + user.getId());
     }
 
@@ -201,9 +185,7 @@ public class LibraryController {
     @PostMapping("/edit/project/{id}")
     public RedirectView newProject(@PathVariable(value = "id") Long id, @ModelAttribute Project proj) {
         User user = this.userDAO.findById(id).orElseThrow(() -> new NoSuchElementException());
-        proj.setUserId(user);
         user.getProjects().add(proj);
-        userDAO.save(user);
         return new RedirectView("/edit/project/" + user.getId());
     }
 
@@ -230,9 +212,7 @@ public class LibraryController {
     @PostMapping("/edit/skill/{id}")
     public RedirectView newSkill(@PathVariable(value = "id") Long id, @ModelAttribute Skill sk) {
         User user = this.userDAO.findById(id).orElseThrow(() -> new NoSuchElementException());
-        sk.setUserId(user);
         user.getSkills().add(sk);
-        userDAO.save(user);
         return new RedirectView("/edit/skill/" + user.getId());
     }
 
