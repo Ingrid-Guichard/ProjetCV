@@ -4,6 +4,7 @@ import io.takima.demo.storage.StorageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
@@ -70,7 +71,8 @@ public class LibraryController {
     }
 
     @PostMapping("/edit/{id}")
-    public RedirectView editUser(@ModelAttribute User user) {
+    public RedirectView editUser(@ModelAttribute User user, @RequestParam("picture") MultipartFile picture) {
+        user.setPhoto(this.storageService.store(picture));
         userDAO.save(user);
         return new RedirectView("/edit/" + user.getId());
     }
@@ -90,9 +92,11 @@ public class LibraryController {
     }
 
     @PostMapping("/edit/education/{id}")
-    public RedirectView newEducation(@PathVariable(value = "id") Long id, @ModelAttribute Education education) {
+    public RedirectView newEducation(@PathVariable(value = "id") Long id, @ModelAttribute Education edu) {
         User user = this.userDAO.findById(id).orElseThrow(() -> new NoSuchElementException());
-        user.getEducations().add(education);
+        edu.setUserId(user);
+        user.getEducations().add(edu);
+        userDAO.save(user);
         return new RedirectView("/edit/education/" + user.getId());
     }
 
@@ -117,9 +121,9 @@ public class LibraryController {
     }
 
     @PostMapping("/edit/experience/{id}")
-    public RedirectView newExperience(@PathVariable(value = "id") Long id, @ModelAttribute Experience experience) {
+    public RedirectView newExperience(@PathVariable(value = "id") Long id, @ModelAttribute Experience exp) {
         User user = this.userDAO.findById(id).orElseThrow(() -> new NoSuchElementException());
-        user.getExperiences().add(experience);
+        user.getExperiences().add(exp);
         return new RedirectView("/edit/experience/" + user.getId());
     }
 
@@ -144,9 +148,9 @@ public class LibraryController {
     }
 
     @PostMapping("/edit/language/{id}")
-    public RedirectView newLanguage(@PathVariable(value = "id") Long id, @ModelAttribute Language language) {
+    public RedirectView newLanguage(@PathVariable(value = "id") Long id, @ModelAttribute Language lang) {
         User user = this.userDAO.findById(id).orElseThrow(() -> new NoSuchElementException());
-        user.getLanguages().add(language);
+        user.getLanguages().add(lang);
         return new RedirectView("/edit/language/" + user.getId());
     }
 
@@ -191,9 +195,9 @@ public class LibraryController {
     }
 
     @PostMapping("/edit/project/{id}")
-    public RedirectView newProject(@PathVariable(value = "id") Long id, @ModelAttribute Project project) {
+    public RedirectView newProject(@PathVariable(value = "id") Long id, @ModelAttribute Project proj) {
         User user = this.userDAO.findById(id).orElseThrow(() -> new NoSuchElementException());
-        user.getProjects().add(project);
+        user.getProjects().add(proj);
         return new RedirectView("/edit/project/" + user.getId());
     }
 
@@ -218,9 +222,9 @@ public class LibraryController {
     }
 
     @PostMapping("/edit/skill/{id}")
-    public RedirectView newSkill(@PathVariable(value = "id") Long id, @ModelAttribute Skill skill) {
+    public RedirectView newSkill(@PathVariable(value = "id") Long id, @ModelAttribute Skill sk) {
         User user = this.userDAO.findById(id).orElseThrow(() -> new NoSuchElementException());
-        user.getSkills().add(skill);
+        user.getSkills().add(sk);
         return new RedirectView("/edit/skill/" + user.getId());
     }
 
