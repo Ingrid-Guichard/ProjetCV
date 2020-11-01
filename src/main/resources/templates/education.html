@@ -22,34 +22,27 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <ul class="nav nav-tabs navbar-fixed-top" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="user-tab" data-toggle="tab" href="/user" role="tab" aria-controls="user"
-                       aria-selected="true">Profil</a>
+            <ul class="nav nav-tabs navbar-fixed-top">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/edit/'+${user.id}}">Profil</a>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="link-tab" data-toggle="tab" href="/link" role="tab" aria-controls="link"
-                       aria-selected="false">Social</a>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/edit/link/'+${user.id}}">Social</a>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="language-tab" data-toggle="tab" href="/language" role="tab"
-                       aria-controls="language" aria-selected="false">Langues</a>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/edit/language/'+${user.id}}">Langues</a>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="skill-tab" data-toggle="tab" href="/skill" role="tab" aria-controls="skill"
-                       aria-selected="false">Skills</a>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/edit/skill/'+${user.id}}">Skills</a>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="education-tab" data-toggle="tab" href="/education" role="tab"
-                       aria-controls="education" aria-selected="false">Formation</a>
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{'/edit/education/'+${user.id}}">Formation</a>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="project-tab" data-toggle="tab" href="/project" role="tab"
-                       aria-controls="project" aria-selected="false">Projets</a>
+                <li class="nav-item">
+                    <a class="nav-link"th:href="@{'/edit/project/'+${user.id}}">Projets</a>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="experience-tab" data-toggle="tab" href="/experience" role="tab"
-                       aria-controls="experience" aria-selected="false">Expériences</a>
+                <li class="nav-item">
+                    <a class="nav-link"th:href="@{'/edit/experience/'+${user.id}}">Expériences</a>
                 </li>
             </ul>
 
@@ -130,11 +123,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- Affichage CV, partie droite -->
         <div class="col-6 border border-secondary" style="padding: 2em">
             <div class="row">
                 <div class="col-5 justify-content-center text-center font-weight-light">
                     <div class="row">
-                        <img th:if="${(user.photo != null && !#strings.isEmpty(user.photo))}"
+                        <img th:if="${(user.photo != null)}"
                              th:src="@{${'/images/' + user.photo}}" class="rounded-circle" width="130" height="130"
                              alt="user photo">
                         <img th:if="${(user.photo == null || #strings.isEmpty(user.photo))}"
@@ -152,22 +147,21 @@
                     <div class="row">
                         <table>
                             <tbody class="text-left">
-                            <tr th:text="${user.age}">
-                                <th>ans</th>
+                            <tr>
+                                <th th:text="${user.age} + ' ans'"></th>
+                                <td></td>
                             </tr>
                             <tr>
                                 <th>Adresse:</th>
-                                <td th:text="${user.address}">adresse</td>
+                                <td th:text="${user.address}"></td>
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="row">
                         <table>
                             <tbody class="text-left">
                             <tr>
                                 <th>Mail:</th>
-                                <td th:text="${user.mail}">e-mail</td>
+                                <td th:text="${user.mail.toLowerCase()}"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -175,60 +169,59 @@
 
                     <br><br>
 
-                    <!-- mettre un if la subsection langues n'est pas nulle, dans div row th:if="${subsection.language != null)}" -->
-                    <div class="row">
-                        <h4 class="font-weight-light" style="color:#489fc2">Langues</h4>
-                    </div>
-                    <div class="row">
-                        <table>
-                            <tbody>
-                            <tr th:each="language : ${languages}">
-                                <td scope="row" th:text="${language?.name}"><b>Langue: </b></td>
-                                <td th:text="${language?.level}">niveau</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                    <div th:if="${not #lists.isEmpty(languages)}">
+                        <div class="row">
+                            <h4 class="font-weight-light" style="color:#489fc2">Langues</h4>
+                        </div>
+                        <div class="row">
+                            <table>
+                                <tbody>
+                                <tr th:each="language : ${languages}">
+                                    <th scope="row" th:text="${language?.name} + ': '"></th>
+                                    <td th:text="${language?.level}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <br>
 
-                    <!-- mettre un if la subsection skills n'est pas nulle, dans div row th:if="${subsection.skills != null)}" -->
-                    <div class="row">
-                        <h4 class="font-weight-light" style="color:#489fc2">Compétences</h4>
-                    </div>
-                    <div class="row">
-                        <table>
-                            <tbody>
-                            <tr th:each="skill : ${skills}">
-                                <td scope="row" th:text="${skill?.name}"><b>Compétence: </b></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                    <div th:if="${not #lists.isEmpty(skills)}">
+                        <div class="row">
+                            <h4 class="font-weight-light" style="color:#489fc2">Compétences</h4>
+                        </div>
+                        <div class="row">
+                            <table>
+                                <tbody>
+                                <tr th:each="skill : ${skills}">
+                                    <td scope="row" th:text="${skill?.name.toUpperCase()}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-7" style="padding-left: 3em">
                     <div class="row">
-                        <h3 class="font-weight-light text-center" th:text="${user.jobStatus}" style="color:#489fc2">Job
-                            status</h3>
+                        <h3 class="font-weight-light text-center" th:text="${user.jobStatus.toUpperCase()}" style="color:#489fc2"></h3>
                     </div>
 
                     <br><br>
 
-                    <!-- mettre un if la subsection education n'est pas nulle, dans div row th:if="${subsection.education != null)}" -->
-                    <div class="row">
+                    <div class="row" th:if="${not #lists.isEmpty(educations)}">
                         <h4 class="font-weight-light" style="color:#489fc2">Formations</h4>
                         <table class="font-weight-light" style="width:100%">
                             <tbody>
                             <tr th:each="education : ${educations}">
-                                <td style="width: 30%" scope="row"
-                                    th:text=" ${education?.startingDate} + ' - ' + ${education?.finalDate}">debut - fin
+                                <td style="width: 30%" scope="row" th:text=" ${education?.startingDate}+ ' - ' +${education?.finalDate}">
                                 </td>
-                                <td th:text="${education?.title}">Ecole</td>
+                                <th th:text="${education?.title}"></th>
                                 <td scope="row"></td>
-                                <td th:text="${education?.place}">Lieu</td>
+                                <td th:text="${education?.place}"></td>
                                 <td scope="row"></td>
-                                <td th:text="${education?.summary}"><b>Diplôme</b></td>
+                                <td th:text="${education?.summary}"><b></b></td>
                             </tr>
                             </tbody>
                         </table>
@@ -236,8 +229,7 @@
 
                     <br>
 
-                    <!-- mettre un if la subsection projects n'est pas nulle, dans div row th:if="${subsection.projects != null)}" -->
-                    <div class="row">
+                    <div class="row" th:if="${not #lists.isEmpty(projects)}">
                         <h4 class="font-weight-light" style="color:#489fc2">Projets</h4>
                         <ul class="font-weight-light" style="width:100%" th:each="project : ${projects}">
                             <li th:text="${project?.title}+': '+${project?.summary}"></li>
@@ -246,20 +238,18 @@
 
                     <br>
 
-                    <!-- mettre un if la subsection experience n'est pas nulle, dans div row th:if="${subsection.experience != null)}" -->
-                    <div class="row">
+                    <div class="row" th:if="${not #lists.isEmpty(experiences)}">
                         <h4 class="font-weight-light" style="color:#489fc2">Expériences professionnelles</h4>
                         <table class="font-weight-light" style="width:100%">
                             <tbody>
                             <tr th:each="experience : ${experiences}">
-                                <td style="width: 30%" scope="row"
-                                    th:text=" ${experience?.startingDate} + ' - ' + ${experience?.finalDate}">debut - fin
+                                <td style="width: 30%" scope="row" th:text=" ${experience?.startingDate}+ ' - ' +${experience?.finalDate}">
                                 </td>
-                                <td th:text="${experience?.place}"><b>Entreprise</b></td>
+                                <th th:text="${experience?.place}"></th>
                                 <td scope="row"></td>
-                                <td th:text="${experience?.title}">Poste</td>
+                                <td th:text="${experience?.title}"></td>
                                 <td scope="row"></td>
-                                <td th:text="${experience?.summary}">Description mission</td>
+                                <td th:text="${experience?.summary}"></td>
                             </tr>
                             </tbody>
                         </table>

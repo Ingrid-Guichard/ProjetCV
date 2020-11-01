@@ -1,4 +1,4 @@
-INSERT INTO defaultdb.users (id, first_name, last_name, age, address, job_status, mail, photo) VALUES (1, 'Elena', 'Ortega', 22, '46 rue mouchez', 'Etudiante', 'elena.ortega@epfedu.fr', 'elena.ortega.jpg');
+INSERT INTO defaultdb.users (id, first_name, last_name, age, address, job_status, mail, photo) VALUES (1, 'Elena', 'Ortega', 22, '46 rue mouchez', 'Etudiante', 'elena.ortega@epfedu.fr', 'elena.ortega.jpeg');
 INSERT INTO defaultdb.languages(id, user_id, name, level) VALUES (1,1,'Espagnol','Bilingue');
 INSERT INTO defaultdb.skills(id, user_id, name) VALUES (1,1,'Java');
 INSERT INTO defaultdb.experiences(id, user_id, title, place, starting_date, final_date, summary) VALUES (1,1, 'Chef de projet', 'Takima', '2020-02-12', '2020-12-18', 'Gestion');
