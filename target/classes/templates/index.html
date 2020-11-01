@@ -15,6 +15,723 @@
     <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
           type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css"/>
+
+    <style type="text/css">
+
+        :root {
+            --blue: #007bff;
+            --indigo: #6610f2;
+            --purple: #6f42c1;
+            --pink: #e83e8c;
+            --red: #dc3545;
+            --orange: #bd5d38;
+            --yellow: #ffc107;
+            --green: #28a745;
+            --teal: #20c997;
+            --cyan: #17a2b8;
+            --white: #fff;
+            --gray: #6c757d;
+            --gray-dark: #343a40;
+            --primary: #bd5d38;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --breakpoint-xs: 0;
+            --breakpoint-sm: 576px;
+            --breakpoint-md: 768px;
+            --breakpoint-lg: 992px;
+            --breakpoint-xl: 1200px;
+            --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: sans-serif;
+            line-height: 1.15;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        body {
+            margin: 0;
+            font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            text-align: left;
+            background-color: #fff;
+        }
+
+        [tabindex="-1"]:focus:not(:focus-visible) {
+            outline: 0 !important;
+        }
+
+        hr {
+            box-sizing: content-box;
+            height: 0;
+            overflow: visible;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        ul
+        {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        ul ul
+        {
+            margin-bottom: 0;
+        }
+
+
+        b,
+        strong {
+            font-weight: bolder;
+        }
+
+        a {
+            color: #bd5d38;
+            text-decoration: none;
+            background-color: transparent;
+        }
+
+        a:hover {
+            color: #824027;
+            text-decoration: underline;
+        }
+
+        a:not([href]) {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:not([href]):hover {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            vertical-align: middle;
+            border-style: none;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: inherit;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        button {
+            border-radius: 0;
+        }
+
+        button:focus {
+            outline: 1px dotted;
+            outline: 5px auto -webkit-focus-ring-color;
+        }
+
+        input,
+        button,
+        textarea {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+        }
+
+        button,
+        input {
+            overflow: visible;
+        }
+
+        button {
+            text-transform: none;
+        }
+
+        [role=button] {
+            cursor: pointer;
+        }
+
+        button,
+        [type=button],
+        [type=submit] {
+            -webkit-appearance: button;
+        }
+
+        button:not(:disabled),
+        [type=button]:not(:disabled),
+        [type=submit]:not(:disabled) {
+            cursor: pointer;
+        }
+
+        textarea {
+            overflow: auto;
+            resize: vertical;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        h1, h2
+        .h1, .h2 {
+            margin-bottom: 0.5rem;
+            font-family: "Saira Extra Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-weight: 700;
+            line-height: 1.2;
+            color: #343a40;
+        }
+
+        h1, .h1 {
+            font-size: 6rem;
+        }
+
+        h2, .h2 {
+            font-size: 3.5rem;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+
+        hr {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding-right: 0.75rem;
+            padding-left: 0.75rem;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -0.75rem;
+            margin-left: -0.75rem;
+        }
+
+        .col {
+            flex-basis: 0;
+            flex-grow: 1;
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .flex-md-row {
+                flex-direction: row !important;
+            }
+        }
+
+        @media (min-width: 1200px) {
+
+            .form-control {
+                display: block;
+                width: 100%;
+                height: calc(1.5em + 0.75rem + 2px);
+                padding: 0.375rem 0.75rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #495057;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .form-control {
+                transition: none;
+            }
+        }
+
+        .form-control::-ms-expand {
+            background-color: transparent;
+            border: 0;
+        }
+        .form-control:-moz-focusring {
+            color: transparent;
+            text-shadow: 0 0 0 #495057;
+        }
+
+        .form-control::placeholder {
+            color: #6c757d;
+            opacity: 1;
+        }
+        .form-control:disabled, .form-control[readonly] {
+            background-color: #e9ecef;
+            opacity: 1;
+        }
+        textarea.form-control {
+            height: auto;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            color: #212529;
+            text-align: center;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: transparent;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .btn {
+                transition: none;
+            }
+        }
+
+        .btn:hover {
+            color: #212529;
+            text-decoration: none;
+        }
+
+        .btn.disabled, .btn:disabled {
+            opacity: 0.65;
+        }
+        .btn:not(:disabled):not(.disabled) {
+            cursor: pointer;
+        }
+        a.btn.disabled {
+            pointer-events: none;
+        }
+
+        .btn-outline-dark {
+            color: #343a40;
+            border-color: #343a40;
+        }
+        .btn-outline-dark:hover {
+            color: #fff;
+            background-color: #343a40;
+            border-color: #343a40;
+        }
+
+        .btn-outline-dark.disabled, .btn-outline-dark:disabled {
+            color: #343a40;
+            background-color: transparent;
+        }
+        .btn-outline-dark:not(:disabled):not(.disabled):active, .btn-outline-dark:not(:disabled):not(.disabled).active, .show > .btn-outline-dark.dropdown-toggle {
+            color: #fff;
+            background-color: #343a40;
+            border-color: #343a40;
+        }
+
+
+        .collapse:not(.show) {
+            display: none;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 1rem;
+        }
+        .nav-link.disabled {
+            color: #6c757d;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .navbar {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar .container-fluid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-nav {
+            display: flex;
+            flex-direction: column;
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none;
+        }
+        .navbar-nav .nav-link {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .navbar-toggler {
+            padding: 0.25rem 0.75rem;
+            font-size: 1.25rem;
+            line-height: 1;
+            background-color: transparent;
+            border: 1px solid transparent;
+            border-radius: 0.25rem;
+        }
+
+
+        @media (max-width: 991.98px) {
+
+            .navbar-expand-lg > .container-fluid {
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
+        @media (min-width: 992px) {
+            .navbar-expand-lg {
+                flex-flow: row nowrap;
+                justify-content: flex-start;
+            }
+            .navbar-expand-lg .navbar-nav {
+                flex-direction: row;
+            }
+            .navbar-expand-lg .navbar-nav .nav-link {
+                padding-right: 0.5rem;
+                padding-left: 0.5rem;
+            }
+
+            .navbar-expand-lg > .container-fluid {
+                flex-wrap: nowrap;
+            }
+            .navbar-expand-lg .navbar-collapse {
+                display: flex !important;
+                flex-basis: auto;
+            }
+            .navbar-expand-lg .navbar-toggler {
+                display: none;
+            }
+        }
+
+        .navbar-dark .navbar-brand {
+            color: #fff;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .navbar-dark .navbar-nav .nav-link.disabled {
+            color: rgba(255, 255, 255, 0.25);
+        }
+        .navbar-dark .navbar-nav .show > .nav-link,
+        .navbar-dark .navbar-nav .active > .nav-link,
+        .navbar-dark .navbar-nav .nav-link.show,
+        .navbar-dark .navbar-nav .nav-link.active {
+            color: #fff;
+        }
+        .navbar-dark .navbar-toggler {
+            color: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .bg-primary {
+            background-color: #bd5d38 !important;
+        }
+
+        a.bg-primary:hover,
+        button.bg-primary:hover {
+            background-color: #964a2c !important;
+        }
+
+        .rounded-circle {
+            border-radius: 50% !important;
+        }
+
+        .d-none {
+            display: none !important;
+        }
+
+        .d-block {
+            display: block !important;
+        }
+
+        .d-flex {
+            display: flex !important;
+        }
+
+
+        @media (min-width: 992px) {
+            .d-lg-none {
+                display: none !important;
+            }
+
+            .d-lg-block {
+                display: block !important;
+            }
+        }
+
+        .flex-column {
+            flex-direction: column !important;
+        }
+
+        .flex-grow-1 {
+            flex-grow: 1 !important;
+        }
+
+
+        .justify-content-between {
+            justify-content: space-between !important;
+        }
+
+        .fixed-top {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+        }
+
+        .m-0 {
+            margin: 0 !important;
+        }
+
+        .mb-0{
+            margin-bottom: 0 !important;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem !important;
+        }
+        .mb-5 {
+            margin-bottom: 3rem !important;
+        }
+
+        .mx-auto {
+            margin-right: auto !important;
+        }
+
+        .mx-auto {
+            margin-left: auto !important;
+        }
+
+
+        @media (min-width: 992px) {
+
+            .font-weight-light {
+                font-weight: 300 !important;
+            }
+        }
+
+        .text-primary {
+            color: #bd5d38 !important;
+        }
+
+        @media print {
+            *,
+            *::before,
+            *::after {
+                text-shadow: none !important;
+                box-shadow: none !important;
+            }
+
+            a:not(.btn) {
+                text-decoration: underline;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+
+            tr,
+            img {
+                page-break-inside: avoid;
+            }
+
+            p,
+            h2 {
+                orphans: 3;
+                widows: 3;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            @page {
+                size: a3;
+            }
+        }
+        body {
+            padding-top: 3.375rem;
+            color: #6c757d;
+        }
+
+        @media (min-width: 992px) {
+            body {
+                padding-top: 0;
+                padding-left: 17rem;
+            }
+        }
+        h1,
+        h2
+        {
+            text-transform: uppercase;
+        }
+
+        h1 {
+            line-height: 1;
+        }
+
+        p.lead {
+            font-size: 1.15rem;
+            font-weight: 400;
+        }
+
+        .subheading {
+            font-family: "Saira Extra Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+
+        #sideNav .navbar-nav .nav-item .nav-link {
+            font-weight: 800;
+            letter-spacing: 0.05rem;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 992px) {
+            #sideNav {
+                text-align: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                display: flex;
+                flex-direction: column;
+                width: 17rem;
+                height: 100vh;
+            }
+            #sideNav .navbar-brand {
+                display: flex;
+                margin: auto auto 0;
+                padding: 0.5rem;
+            }
+            #sideNav .navbar-brand .img-profile {
+                max-width: 10rem;
+                max-height: 10rem;
+                border: 0.5rem solid rgba(255, 255, 255, 0.2);
+            }
+            #sideNav .navbar-collapse {
+                display: flex;
+                align-items: flex-start;
+                flex-grow: 0;
+                width: 100%;
+                margin-bottom: auto;
+            }
+            #sideNav .navbar-collapse .navbar-nav {
+                flex-direction: column;
+                width: 100%;
+            }
+            #sideNav .navbar-collapse .navbar-nav .nav-item {
+                display: block;
+            }
+            #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link {
+                display: block;
+            }
+        }
+        .social-icons .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 3.5rem;
+            width: 3.5rem;
+            background-color: #495057;
+            color: #fff;
+            border-radius: 100%;
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+        }
+        .social-icons .social-icon:last-child {
+            margin-right: 0;
+        }
+        .social-icons .social-icon:hover {
+            background-color: #bd5d38;
+        }
+
+        section.resume-section {
+            display: flex;
+            align-items: center;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            max-width: 75rem;
+        }
+        section.resume-section .resume-section-content {
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            section.resume-section {
+                min-height: 100vh;
+            }
+        }
+        @media (min-width: 992px) {
+            section.resume-section {
+                padding-left: 3rem;
+                padding-right: 3rem;
+                padding-top: 5rem;
+                padding-bottom: 5rem;
+            }
+        }
+
+    </style>
 </head>
 
 <body id="page-top">
@@ -57,14 +774,10 @@
     <!-- Description -->
     <section class="resume-section" id="about">
         <div class="resume-section-content">
-            <h1 class="mb-0" th:text="${user.firstName}">
-                Prénom
-                <span class="text-primary" th:text="${user.lastName}">Nom</span>
-            </h1>
-            <div class="subheading mb-5" th:text="${user.address}+' '+${user.age}">
-                description
-                <a th:href="${user.mail}">name@email.com</a>
-            </div>
+            <h1 class="mb-0" th:text="${user.firstName} + ' ' + ${user.lastName}"></h1>
+            <div class="subheading mb-5" th:text="${user.age} + ' ans'"></div>
+            <div class="subheading mb-5" th:text="'Adresse : ' + ${user.address}"></div>
+            <div class="subheading mb-5" th:text="'Email : ' + ${user.mail}"></div>
             <p class="lead mb-5" th:text="${user.jobStatus}">description</p>
             <div class="social-icons">
                 <a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -175,7 +888,7 @@
     <section class="resume-section" id="contact">
         <div class="resume-section-content">
             <h2 class="mb-5">Contactez-Moi</h2>
-            <form action="#" th:action="@{~/index/contact}" th:object="${contactMail}" method="post" target="_blank">
+            <form method="post" th:action="@{'/index/contact'}" th:object="${contactMail}" target="_blank">
                 <!--<form form action="#" th:action="@{/}" th:object="${contactMail}" method="post" target="_blank">-->
                 <div class="row">
                     <div class="col"> <!--th:class="${#fields.hasErrors('name')}? has-error">-->
@@ -187,13 +900,13 @@
                         <!--<span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" th:errorclass="fieldError">Surname Error</span>-->
                     </div>
                     <div class="col"> <!--th:class="${#fields.hasErrors('email')}? has-error">-->
-                        <input type="text" class="form-control" placeholder="email" id="mail">
+                        <input type="text" class="form-control" th:field="*{con.mail}" placeholder="email" id="mailInput" th:value="${con.mail}" required>
                         <!--<span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}" th:errorclass="fieldError">Mail Error</span>-->
                     </div>
                 </div>
                 <div class="form-group"> <!-- th:class="${#fields.hasErrors('msg')}? has-error">-->
-                    <label for="msg">Message</label>
-                    <textarea class="form-control" rows="3" id="msg"></textarea>
+                    <label for="msgInput">Message</label>
+                    <textarea class="form-control" rows="3" th:field="*{con.msg}" id="msgInput" th:value="${con.msg}" required></textarea>
                     <!--<span th:if="${#fields.hasErrors('msg')}" th:errors="*{msg}" th:errorclass="fieldError">Message Error</span>-->
                 </div>
                 <button type="submit" class="btn btn-outline-dark">Envoyer</button>
@@ -209,6 +922,52 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Core theme JS-->
 <script src="../static/js/scripts.js"></script>
+
+<script>
+    /*!
+    * Start Bootstrap - Resume v6.0.1 (https://startbootstrap.com/template-overviews/resume)
+    * Copyright 2013-2020 Start Bootstrap
+    * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE)
+    */
+    (function ($) {
+        "use strict"; // Start of use strict
+
+        // Smooth scrolling using jQuery easing
+        $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
+            if (
+                location.pathname.replace(/^\//, "") ==
+                this.pathname.replace(/^\//, "") &&
+                location.hostname == this.hostname
+            ) {
+                var target = $(this.hash);
+                target = target.length
+                    ? target
+                    : $("[name=" + this.hash.slice(1) + "]");
+                if (target.length) {
+                    $("html, body").animate(
+                        {
+                            scrollTop: target.offset().top,
+                        },
+                        1000,
+                        "easeInOutExpo"
+                    );
+                    return false;
+                }
+            }
+        });
+
+        // Closes responsive menu when a scroll trigger link is clicked
+        $(".js-scroll-trigger").click(function () {
+            $(".navbar-collapse").collapse("hide");
+        });
+
+        // Activate scrollspy to add active class to navbar items on scroll
+        $("body").scrollspy({
+            target: "#sideNav",
+        });
+    })(jQuery); // End of use strict
+
+</script>
 </body>
 </html>
 

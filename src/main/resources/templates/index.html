@@ -774,14 +774,10 @@
     <!-- Description -->
     <section class="resume-section" id="about">
         <div class="resume-section-content">
-            <h1 class="mb-0" th:text="${user.firstName}">
-                Prénom
-                <span class="text-primary" th:text="${user.lastName}">Nom</span>
-            </h1>
-            <div class="subheading mb-5" th:text="${user.address}+' '+${user.age}">
-                description
-                <a th:href="${user.mail}">name@email.com</a>
-            </div>
+            <h1 class="mb-0" th:text="${user.firstName} + ' ' + ${user.lastName}"></h1>
+            <div class="subheading mb-5" th:text="${user.age} + ' ans'"></div>
+            <div class="subheading mb-5" th:text="'Adresse : ' + ${user.address}"></div>
+            <div class="subheading mb-5" th:text="'Email : ' + ${user.mail}"></div>
             <p class="lead mb-5" th:text="${user.jobStatus}">description</p>
             <div class="social-icons">
                 <a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
