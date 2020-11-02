@@ -17,10 +17,12 @@ import java.util.NoSuchElementException;
 public class LibraryController {
 
     private final UserDAO userDAO;
+    private final LinkDAO linkDAO;
     private final StorageService storageService;
 
-    public LibraryController(UserDAO userDAO, StorageService storageService) {
+    public LibraryController(UserDAO userDAO, LinkDAO linkDAO, StorageService storageService) {
         this.userDAO = userDAO;
+        this.linkDAO = linkDAO;
         this.storageService = storageService;
     }
 
@@ -28,9 +30,17 @@ public class LibraryController {
     public String homePage(@PathVariable(value = "id") Long id, Model m) {
         User user = this.userDAO.findById(id).orElseThrow(() -> new NoSuchElementException());
 
+        Link link1 = this.linkDAO.findLinkByTitleAndUserId("LinkedIn",user);
+        Link link2 = this.linkDAO.findLinkByTitleAndUserId("GitHub",user);
+        Link link3 = this.linkDAO.findLinkByTitleAndUserId("Twitter",user);
+        Link link4 = this.linkDAO.findLinkByTitleAndUserId("Facebook",user);
         m.addAttribute("user", user);
         m.addAttribute("languages", user.getLanguages());
         m.addAttribute("links", user.getLinks());
+        m.addAttribute("link1",link1.getLink());
+        m.addAttribute("link2",link2.getLink());
+        m.addAttribute("link3",link3.getLink());
+        m.addAttribute("link4",link4.getLink());
         m.addAttribute("skills", user.getSkills());
         m.addAttribute("educations", user.getEducations());
         m.addAttribute("projects", user.getProjects());
