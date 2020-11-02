@@ -780,10 +780,10 @@
             <div class="subheading mb-5" th:text="'Email : ' + ${user.mail}"></div>
             <p class="lead mb-5" th:text="${user.jobStatus}"></p>
             <div class="social-icons">
-                <a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a class="social-icon" href="#"><i class="fab fa-github"></i></a>
-                <a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
-                <a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+                <a th:if="${(link1 != null)}" class="social-icon" th:href="${link1}"><i class="fab fa-linkedin-in"></i></a>
+                <a th:if="${(link2 != null)}" class="social-icon" th:href="${link2}"><i class="fab fa-github"></i></a>
+                <a th:if="${(link3 != null)}" class="social-icon" th:href="${link3}"><i class="fab fa-twitter"></i></a>
+                <a th:if="${(link4 != null)}" class="social-icon" th:href="${link4}"><i class="fab fa-facebook-f"></i></a>
             </div>
         </div>
     </section>
